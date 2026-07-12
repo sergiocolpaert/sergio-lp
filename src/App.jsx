@@ -578,63 +578,81 @@ export default function AppV4() {
       </section>
 
       {/* SECTION 2 — DIAGNÓSTICO / PROBLEMA */}
-      <section className="relative w-full min-h-screen bg-black flex flex-col justify-center py-24 px-6 md:px-16">
-        <div className="max-w-3xl mx-auto flex flex-col justify-center items-start">
+      <section className="relative w-full min-h-screen bg-black flex items-center py-24 px-6 md:px-16">
+        <div className="max-w-[1200px] w-full mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16 items-center">
           
-          <motion.span 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-sm text-white/60 font-mono block mb-4"
-          >
-            // O problema
-          </motion.span>
-
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-[1.0] text-white"
-          >
-            A maioria dos sites trava antes de vender.
-          </motion.h2>
-
-          {/* Problem Card Frame */}
+          {/* Left Column: Image */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="liquid-glass rounded-[1.5rem] p-8 md:p-10 w-full mt-10"
+            transition={{ duration: 0.8 }}
+            className="liquid-glass rounded-[2rem] overflow-hidden aspect-[4/3] lg:aspect-square relative w-full shadow-2xl"
           >
-            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
-              Template genérico. Texto que ninguém lê. Visual que não passa confiança. O resultado aparece no caixa: visitas que não viram conversa, e conversas que não viram contrato.
-            </p>
-            <p className="text-lg md:text-xl text-white/95 font-medium mt-6 leading-relaxed">
-              Um site bom não é o mais bonito. É o que conduz a decisão certa.
-            </p>
+            <img 
+              src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" 
+              alt="Abstrato Dark Minimalista" 
+              className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700 ease-out"
+            />
           </motion.div>
 
-          {/* Dores Chips Row */}
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-wrap gap-3 mt-8"
-          >
-            {["Genérico demais", "Sem estratégia", "Sem resultado"].map((chip) => (
-              <span key={chip} className="liquid-glass rounded-full px-4 py-2 text-sm text-white/85 font-sans flex items-center gap-2">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white w-3 h-3 flex-shrink-0">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-                <span>{chip}</span>
-              </span>
-            ))}
-          </motion.div>
+          {/* Right Column: Text & Dores */}
+          <div className="flex flex-col items-start justify-center w-full">
+            <motion.span 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-sm text-white/60 font-mono block mb-4"
+            >
+              // O problema
+            </motion.span>
+
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-[1.0] text-white"
+            >
+              A maioria dos sites trava antes de vender.
+            </motion.h2>
+
+            {/* Problem Card Frame */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.98 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="liquid-glass rounded-[1.5rem] p-8 md:p-10 w-full mt-8"
+            >
+              <p className="text-lg text-white/80 font-light leading-relaxed">
+                Template genérico. Texto que ninguém lê. Visual que não passa confiança. O resultado aparece no caixa: visitas que não viram conversa, e conversas que não viram contrato.
+              </p>
+              <p className="text-lg text-white/95 font-medium mt-6 leading-relaxed">
+                Um site bom não é o mais bonito. É o que conduz a decisão certa.
+              </p>
+            </motion.div>
+
+            {/* Dores Chips Row */}
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap gap-3 mt-8"
+            >
+              {["Genérico demais", "Sem estratégia", "Sem resultado"].map((chip) => (
+                <span key={chip} className="liquid-glass rounded-full px-4 py-2 text-sm text-white/85 font-sans flex items-center gap-2">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white w-3 h-3 flex-shrink-0">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                  <span>{chip}</span>
+                </span>
+              ))}
+            </motion.div>
+          </div>
 
         </div>
       </section>
