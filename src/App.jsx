@@ -497,12 +497,12 @@ Dados da Aplicação:
               {/* Headline */}
               <div className="flex flex-col items-start select-text mb-6">
                 <BlurText 
-                  text="Sua marca é líder de mercado."
+                  text="Construímos a imagem digital"
                   delay={4.2}
                   className="text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-[-0.04em] leading-[0.95] text-white text-left justify-start"
                 />
                 <BlurText 
-                  text="Seu site também deveria ser."
+                  text="que o topo do seu mercado exige."
                   delay={4.5}
                   className="text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-[-0.04em] leading-[0.95] text-white mt-2 text-left justify-start"
                 />
@@ -514,7 +514,7 @@ Dados da Aplicação:
                 transition={{ ...motionProps.transition, delay: 5.0 }}
                 className="text-base md:text-lg text-white/85 max-w-xl leading-snug font-light"
               >
-                Interfaces exclusivas de alto padrão para empresas que se recusam a parecer comuns. Design premium alinhado à máxima performance web.
+                Unimos estética sofisticada e engenharia de dados para consolidar a liderança da sua marca no digital.
               </motion.p>
 
               {/* CTA Buttons */}
@@ -527,7 +527,7 @@ Dados da Aplicação:
                   onClick={handleScrollToForm}
                   className="liquid-glass-strong rounded-full px-7 py-3.5 flex items-center gap-2 hover:scale-105 transition-transform text-sm font-semibold tracking-wide"
                 >
-                  Agendar Sessão Estratégica <ArrowUpRight />
+                  Iniciar Projeto <ArrowUpRight />
                 </button>
               </motion.div>
 
