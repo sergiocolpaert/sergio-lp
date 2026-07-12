@@ -425,7 +425,7 @@ Dados da Aplicação:
       
       {/* NAVBAR */}
       <nav className="fixed top-4 left-0 right-0 z-50 flex justify-center px-6 md:px-8 lg:px-8 select-none">
-        <div className="w-full max-w-[1200px] flex justify-between items-center">
+        <div className="w-full max-w-[1440px] flex justify-between items-center">
           {/* Left: Brand Name Logo */}
           <div className="liquid-glass h-12 px-5 rounded-full flex items-center justify-center cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <span className="font-sans font-semibold text-sm md:text-base text-white tracking-tight">Sergio Colpaert.</span>
@@ -474,7 +474,7 @@ Dados da Aplicação:
         {/* Content Overlay */}
         <div className="relative z-10 flex flex-col justify-between h-full min-h-screen px-6 md:px-8 lg:px-8 pt-28 pb-10">
           
-          <div className="my-auto w-full max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-stretch">
+          <div className="my-auto w-full max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-stretch">
             
             {/* Left Column: Text & CTAs */}
             <div className="flex flex-col items-start text-left max-w-2xl justify-center">
@@ -598,8 +598,8 @@ Dados da Aplicação:
       </section>
 
       {/* SECTION 2 — DIAGNÓSTICO / PROBLEMA */}
-      <section className="relative w-full min-h-screen bg-black flex items-center py-24 px-6 md:px-12 lg:px-16">
-        <div className="max-w-[1200px] w-full mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16 items-center">
+      <section className="relative w-full min-h-screen bg-black flex items-center py-24 px-6 md:px-8 lg:px-8">
+        <div className="max-w-[1440px] w-full mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16 items-center">
           
           {/* Left Column: Image */}
           <motion.div 
@@ -659,7 +659,7 @@ Dados da Aplicação:
       </section>
 
       {/* SECTION 3 — MÉTODO CRAFT */}
-      <section id="metodo" className="relative w-full min-h-screen bg-black overflow-hidden py-32 px-6 md:px-12 lg:px-16">
+      <section id="metodo" className="relative w-full min-h-screen bg-black overflow-hidden py-32 px-6 md:px-8 lg:px-8">
         
         {/* Background Video Wrapper */}
         <div 
@@ -690,7 +690,7 @@ Dados da Aplicação:
           )}
         </AnimatePresence>
 
-        <div className="relative z-10 max-w-[1200px] mx-auto flex flex-col h-full w-full justify-between">
+        <div className="relative z-10 max-w-[1440px] mx-auto flex flex-col h-full w-full justify-between">
           
           {/* Header */}
           <div className="mb-16">
@@ -751,8 +751,8 @@ Dados da Aplicação:
       </section>
 
       {/* DOBRA 4 — PROVA SOCIAL & DEPOIMENTOS */}
-      <section className="relative w-full min-h-screen bg-black flex flex-col justify-center py-24 px-6 md:px-12 lg:px-16 border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto w-full">
+      <section className="relative w-full min-h-screen bg-black flex flex-col justify-center py-24 px-6 md:px-8 lg:px-8 border-t border-white/5">
+        <div className="max-w-[1440px] mx-auto w-full">
           
           {/* Header */}
           <div className="mb-16">
@@ -838,7 +838,7 @@ Dados da Aplicação:
 
       {/* SECTION 5 — PROJETOS / PORTFÓLIO */}
       <section id="projetos" className="relative w-full min-h-screen bg-black py-32 px-6 md:px-8 lg:px-8 border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto w-full">
+        <div className="max-w-[1440px] mx-auto w-full">
           
           {/* Header */}
           <div className="mb-16">
@@ -896,7 +896,7 @@ Dados da Aplicação:
 
       {/* DOBRA 6 — O ESCOPO PREMIUM */}
       <section id="diferenciais" className="relative w-full min-h-screen bg-black flex flex-col justify-center py-32 px-6 md:px-8 lg:px-8 border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto w-full">
+        <div className="max-w-[1440px] mx-auto w-full">
           
           {/* Header */}
           <div className="mb-20">
@@ -961,7 +961,7 @@ Dados da Aplicação:
 
       {/* DOBRA 7 — GARANTIA */}
       <section id="garantias" className="relative w-full min-h-screen bg-black flex flex-col justify-center py-24 px-6 md:px-8 lg:px-8 border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto w-full">
+        <div className="max-w-[1440px] mx-auto w-full">
           
           {/* Header */}
           <div className="mb-16">
@@ -1015,7 +1015,7 @@ Dados da Aplicação:
 
       {/* SECTION 6 — SOBRE / BIO */}
       <section id="sobre" className="relative w-full min-h-screen bg-black flex items-center py-24 px-6 md:px-8 lg:px-8">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-12 items-center w-full">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-12 items-center w-full">
           
           {/* Left Column: Profile Photo */}
           <div className="liquid-glass rounded-[1.5rem] aspect-[4/5] w-full overflow-hidden relative shadow-2xl">
