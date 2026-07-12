@@ -424,14 +424,14 @@ Dados da Aplicação:
         >
       
       {/* NAVBAR */}
-      <nav className="fixed top-4 left-0 right-0 z-50 flex justify-center px-6 md:px-12 lg:px-16 select-none">
+      <nav className="fixed top-4 left-0 right-0 z-50 flex justify-center px-6 md:px-8 lg:px-8 select-none">
         <div className="w-full max-w-[1200px] flex justify-between items-center">
           {/* Left: Brand Name Logo */}
           <div className="liquid-glass h-12 px-5 rounded-full flex items-center justify-center cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <span className="font-sans font-semibold text-sm md:text-base text-white tracking-tight">Sergio Colpaert.</span>
           </div>
 
-          {/* Center Links (Hidden on mobile) */}
+          {/* Right Links (Hidden on mobile - aligned to the right by removing the left/center spacer) */}
           <div className="hidden md:flex items-center gap-1.5 liquid-glass rounded-full px-2 py-1.5">
             {[
               { label: "Portfólio", id: "projetos" },
@@ -457,9 +457,6 @@ Dados da Aplicação:
               <ArrowUpRight />
             </button>
           </div>
-
-          {/* Right: Spacer */}
-          <div className="h-12 w-12" />
         </div>
       </nav>
 
@@ -475,7 +472,7 @@ Dados da Aplicação:
         />
 
         {/* Content Overlay */}
-        <div className="relative z-10 flex flex-col justify-between h-full min-h-screen px-6 md:px-12 lg:px-16 pt-28 pb-10">
+        <div className="relative z-10 flex flex-col justify-between h-full min-h-screen px-6 md:px-8 lg:px-8 pt-28 pb-10">
           
           <div className="my-auto w-full max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-stretch">
             
@@ -840,7 +837,7 @@ Dados da Aplicação:
       </section>
 
       {/* SECTION 5 — PROJETOS / PORTFÓLIO */}
-      <section id="projetos" className="relative w-full min-h-screen bg-black py-32 px-6 md:px-12 lg:px-16 border-t border-white/5">
+      <section id="projetos" className="relative w-full min-h-screen bg-black py-32 px-6 md:px-8 lg:px-8 border-t border-white/5">
         <div className="max-w-[1200px] mx-auto w-full">
           
           {/* Header */}
@@ -898,7 +895,7 @@ Dados da Aplicação:
       </section>
 
       {/* DOBRA 6 — O ESCOPO PREMIUM */}
-      <section id="diferenciais" className="relative w-full min-h-screen bg-black flex flex-col justify-center py-32 px-6 md:px-12 lg:px-16 border-t border-white/5">
+      <section id="diferenciais" className="relative w-full min-h-screen bg-black flex flex-col justify-center py-32 px-6 md:px-8 lg:px-8 border-t border-white/5">
         <div className="max-w-[1200px] mx-auto w-full">
           
           {/* Header */}
@@ -963,7 +960,7 @@ Dados da Aplicação:
       </section>
 
       {/* DOBRA 7 — GARANTIA */}
-      <section id="garantias" className="relative w-full min-h-screen bg-black flex flex-col justify-center py-24 px-6 md:px-12 lg:px-16 border-t border-white/5">
+      <section id="garantias" className="relative w-full min-h-screen bg-black flex flex-col justify-center py-24 px-6 md:px-8 lg:px-8 border-t border-white/5">
         <div className="max-w-[1200px] mx-auto w-full">
           
           {/* Header */}
@@ -1017,7 +1014,7 @@ Dados da Aplicação:
       </section>
 
       {/* SECTION 6 — SOBRE / BIO */}
-      <section id="sobre" className="relative w-full min-h-screen bg-black flex items-center py-24 px-6 md:px-12 lg:px-16">
+      <section id="sobre" className="relative w-full min-h-screen bg-black flex items-center py-24 px-6 md:px-8 lg:px-8">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-12 items-center w-full">
           
           {/* Left Column: Profile Photo */}
@@ -1050,7 +1047,7 @@ Dados da Aplicação:
 
       {/* SECTION 7 — FORMULÁRIO DE CONVERSÃO */}
       {/* SECTION 7 — FORMULÁRIO DE CONVERSÃO */}
-      <section id="form" className="relative w-full min-h-screen bg-black flex items-center py-32 px-6 md:px-12 lg:px-16 border-t border-white/5">
+      <section id="form" className="relative w-full min-h-screen bg-black flex items-center py-32 px-6 md:px-8 lg:px-8 border-t border-white/5">
         <div className="max-w-[680px] mx-auto w-full flex flex-col items-center">
           
           {/* Header */}
@@ -1148,7 +1145,7 @@ Dados da Aplicação:
       </section>
 
       {/* SECTION 8 — FAQ + FECHAMENTO */}
-      <section id="faq" className="relative w-full min-h-screen bg-black py-32 px-6 md:px-12 lg:px-16 border-t border-white/5 flex flex-col justify-between">
+      <section id="faq" className="relative w-full min-h-screen bg-black py-32 px-6 md:px-8 lg:px-8 border-t border-white/5 flex flex-col justify-between">
         <div className="max-w-3xl mx-auto w-full flex-1 flex flex-col justify-center">
           
           {/* Header */}
@@ -1205,7 +1202,7 @@ Dados da Aplicação:
       </section>
 
       {/* FOOTER */}
-      <footer className="w-full border-t border-white/5 bg-black py-10 px-8 md:px-16 flex flex-col sm:flex-row justify-between items-center gap-6 text-white/50 text-sm">
+      <footer className="w-full border-t border-white/5 bg-black py-10 px-6 md:px-8 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6 text-white/50 text-sm">
         <div>
           © 2026 Sérgio Colpaert · Product Designer
         </div>
