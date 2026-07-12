@@ -482,10 +482,10 @@ export default function AppV4() {
         {/* Content Overlay */}
         <div className="relative z-10 flex flex-col justify-between h-full min-h-screen px-6 md:px-16 lg:px-24 pt-28 pb-10">
           
-          <div className="my-auto w-full max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center">
+          <div className="my-auto w-full max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-stretch">
             
             {/* Left Column: Text & CTAs */}
-            <div className="flex flex-col items-start text-left max-w-2xl">
+            <div className="flex flex-col items-start text-left max-w-2xl justify-center">
               {/* Booking Badge */}
               <motion.div
                 {...motionProps}
@@ -534,12 +534,6 @@ export default function AppV4() {
                 >
                   Solicitar diagnóstico gratuito <ArrowUpRight />
                 </button>
-                <button 
-                  onClick={() => handleScrollToSection('metodo')}
-                  className="flex items-center gap-2 text-white/90 hover:text-white transition-colors text-sm font-medium px-4 py-2 group"
-                >
-                  Ver o método <ChevronDown />
-                </button>
               </motion.div>
 
               {/* Microcopy */}
@@ -553,7 +547,7 @@ export default function AppV4() {
             </div>
 
             {/* Right Column: Fading Video Container with zoom-out transitions */}
-            <div className="relative w-full aspect-video lg:aspect-[4/3] rounded-[2rem]">
+            <div className="relative w-full aspect-video lg:aspect-auto lg:h-full lg:self-stretch rounded-[2rem]">
               <motion.div
                 layout
                 className={isHeroVideoShrunk 
