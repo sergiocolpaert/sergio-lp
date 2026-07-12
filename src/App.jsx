@@ -297,17 +297,8 @@ function LoadingScreen({ onComplete }) {
 
   return (
     <div className="fixed inset-0 z-[9999] bg-black flex flex-col justify-between p-8 md:p-16 select-none overflow-hidden font-sans">
-      {/* Top Left Label */}
-      <div className="flex items-center">
-        <motion.span 
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-xs text-white/50 uppercase tracking-[0.3em] font-mono"
-        >
-          Método CRAFT
-        </motion.span>
-      </div>
+      {/* Top Left Space */}
+      <div className="flex items-center h-4" />
 
       {/* Center Word Rotator */}
       <div className="flex items-center justify-center">
@@ -584,11 +575,8 @@ Dados da Aplicação:
           <motion.footer
             {...motionProps}
             transition={{ ...motionProps.transition, delay: 5.6 }}
-            className="flex flex-col items-center gap-4 w-full"
+            className="flex flex-col items-center w-full"
           >
-            <div className="liquid-glass rounded-full px-4 py-1.5 text-xs text-white/80 font-sans tracking-wide">
-              Projetos premiados em UI Design.
-            </div>
             
             <div className="relative w-full max-w-5xl mx-auto overflow-hidden mt-3 py-2">
               {/* Fade sutil nas laterais (gradiente dark) */}
@@ -650,7 +638,7 @@ Dados da Aplicação:
               transition={{ duration: 0.8, delay: 0.1 }}
               className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-[1.0] text-white"
             >
-              O design invisível afasta seus clientes de maior valor.
+              O design invisível afasta seus clientes de maior valor
             </motion.h2>
 
             {/* Problem Text Content (Solto, sem container) */}
@@ -711,7 +699,7 @@ Dados da Aplicação:
           <div className="mb-16">
             <span className="text-sm text-white/60 font-mono block mb-4">// O método</span>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-[-0.03em] leading-[0.95] text-white">
-              Método CRAFT. 5 fases. Sem achismos.
+              Método CRAFT. 5 fases. Sem achismos
             </h2>
             <p className="text-lg text-white/85 max-w-2xl mt-6 leading-relaxed font-light">
               Um processo autoral, do conceito ao lançamento. Cada fase tem entrega clara e ponto de aprovação.
@@ -773,7 +761,7 @@ Dados da Aplicação:
           <div className="mb-16">
             <span className="text-sm text-white/60 font-mono block mb-4">// Prova social</span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-tight text-white">
-              Quem decidiu subir de nível.
+              Quem decidiu subir de nível
             </h2>
           </div>
 
@@ -859,7 +847,7 @@ Dados da Aplicação:
           <div className="mb-16">
             <span className="text-sm text-white/60 font-mono block mb-4">// Portfólio</span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-tight text-white">
-              Projetos selecionados.
+              Projetos selecionados
             </h2>
             <p className="text-lg text-white/85 max-w-2xl mt-6 leading-relaxed font-light">
               Interfaces sob medida criadas para marcas que lideram seus nichos.
@@ -917,7 +905,7 @@ Dados da Aplicação:
           <div className="mb-20">
             <span className="text-sm text-white/60 font-mono block mb-4">// Diferenciais</span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-tight text-white">
-              O padrão de entrega:
+              O padrão de entrega
             </h2>
           </div>
 
@@ -982,7 +970,7 @@ Dados da Aplicação:
           <div className="mb-16">
             <span className="text-sm text-white/60 font-mono block mb-4">// Garantia</span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-tight text-white">
-              Risco zero para você.
+              Risco zero para você
             </h2>
           </div>
 
@@ -1069,7 +1057,7 @@ Dados da Aplicação:
           <div className="text-center mb-12">
             <span className="text-sm text-white/60 font-mono block mb-4">// Aplicação</span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-tight text-white">
-              Aplique para uma Sessão Estratégica.
+              Aplique para uma Sessão Estratégica
             </h2>
             <p className="text-sm md:text-base text-white/70 max-w-lg mx-auto mt-4 font-light">
               Vagas limitadas para garantir atenção cirúrgica e exclusiva. Preencha os dados e retornaremos em até 24 horas.
@@ -1093,7 +1081,7 @@ Dados da Aplicação:
 
             {/* Campo 2: E-mail Corporativo */}
             <div className="flex flex-col gap-1 w-full text-left">
-              <label className="text-[10px] text-white/50 font-mono uppercase tracking-widest">E-mail Corporativo</label>
+              <label className="text-[10px] text-white/50 font-mono uppercase tracking-widest">Email</label>
               <input
                 type="email"
                 placeholder="Ex: joao@suaempresa.com.br"
@@ -1148,7 +1136,7 @@ Dados da Aplicação:
             >
               <button 
                 onClick={handleSendWhatsApp}
-                className="liquid-glass-strong rounded-full px-8 py-4 flex items-center gap-2 hover:scale-105 transition-transform text-sm font-semibold tracking-wide bg-white text-black"
+                className="liquid-glass-strong rounded-full px-8 py-4 flex items-center gap-2 hover:scale-105 transition-transform text-sm font-semibold tracking-wide text-white border border-white/10"
               >
                 Enviar Aplicação & Agendar Análise <ArrowUpRight />
               </button>
@@ -1167,7 +1155,7 @@ Dados da Aplicação:
           <div className="mb-16">
             <span className="text-sm text-white/60 font-mono block mb-4">// Dúvidas</span>
             <h2 className="text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-white">
-              Dúvidas comuns.
+              Dúvidas comuns
             </h2>
           </div>
 
