@@ -697,11 +697,16 @@ export default function AppV4() {
       {/* SECTION 3 — MÉTODO CRAFT */}
       <section id="metodo" className="relative w-full min-h-screen bg-black overflow-hidden py-32 px-6 md:px-16">
         
-        {/* Background Video */}
-        <FadingVideo
-          src={SECONDARY_BG}
-          className="absolute inset-0 w-full h-full object-cover z-0"
-        />
+        {/* Background Video Wrapper */}
+        <div 
+          className="absolute inset-0 w-full h-full z-0 transition-opacity duration-500"
+          style={{ opacity: activeMethodIndex !== null ? 0 : 1 }}
+        >
+          <FadingVideo
+            src={SECONDARY_BG}
+            className="w-full h-full object-cover"
+          />
+        </div>
         {/* Dark overlay for method section */}
         <div className="absolute inset-0 bg-black/55 z-[1]" />
 
@@ -793,11 +798,17 @@ export default function AppV4() {
             </h2>
           </div>
 
-          {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Bento Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
             
-            {/* Card 1 */}
-            <div className="liquid-glass rounded-[1.25rem] p-7 flex flex-col justify-between min-h-[220px]">
+            {/* Card 1: Garantia de escopo (Grande - 2 colunas) */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="liquid-glass rounded-[1.5rem] p-8 flex flex-col justify-between md:col-span-2 min-h-[220px]"
+            >
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
                   <CheckIcon />
@@ -805,25 +816,40 @@ export default function AppV4() {
                 <h3 className="text-lg font-semibold text-white/95">Garantia de escopo</h3>
               </div>
               <p className="text-sm text-white/80 mt-6 leading-relaxed font-light">
-                O desenvolvimento só começa depois que você aprova formalmente o que será entregue.
+                O desenvolvimento de código só começa após a aprovação formal do wireframe e da estrutura. Você sabe exatamente o que vai receber antes do início de qualquer linha de programação, garantindo 100% de clareza nas entregas.
               </p>
-            </div>
+            </motion.div>
 
-            {/* Card 2 */}
-            <div className="liquid-glass rounded-[1.25rem] p-7 flex flex-col justify-between min-h-[220px]">
-              <div className="flex items-center gap-3">
+            {/* Card 2: Garantia de design (Alto - 1 coluna, 2 linhas) */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="liquid-glass rounded-[1.5rem] p-8 flex flex-col justify-between md:col-span-1 md:row-span-2 min-h-[280px] md:min-h-full"
+            >
+              <div className="flex flex-col gap-4">
                 <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
                   <CheckIcon />
                 </div>
                 <h3 className="text-lg font-semibold text-white/95">Garantia de design</h3>
+                <p className="text-sm text-white/80 leading-relaxed font-light">
+                  Revisões ilimitadas na interface de alta fidelidade até a aprovação final. Sem prazos forçados ou retrabalho que vira refém. Ajustamos os pixels, as fontes e os layouts até que o visual corresponda exatamente à imagem de excelência da sua marca.
+                </p>
               </div>
-              <p className="text-sm text-white/80 mt-6 leading-relaxed font-light">
-                Revisões ilimitadas na interface até a aprovação final. Sem retrabalho que vira refém.
-              </p>
-            </div>
+              <div className="mt-8 pt-4 border-t border-white/5 font-mono text-[10px] text-white/40 tracking-wider">
+                // 100% PIXEL PERFECT
+              </div>
+            </motion.div>
 
-            {/* Card 3 */}
-            <div className="liquid-glass rounded-[1.25rem] p-7 flex flex-col justify-between min-h-[220px]">
+            {/* Card 3: Garantia de fluxo (1 coluna) */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="liquid-glass rounded-[1.5rem] p-8 flex flex-col justify-between min-h-[220px]"
+            >
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
                   <CheckIcon />
@@ -831,9 +857,28 @@ export default function AppV4() {
                 <h3 className="text-lg font-semibold text-white/95">Garantia de fluxo</h3>
               </div>
               <p className="text-sm text-white/80 mt-6 leading-relaxed font-light">
-                Pagamento dividido por marcos, alinhado a cada entrega do CRAFT.
+                Pagamento dividido por marcos, alinhado a cada entrega física do Método CRAFT. Você financia o progresso real.
               </p>
-            </div>
+            </motion.div>
+
+            {/* Card 4: Garantia de código (1 coluna) */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="liquid-glass rounded-[1.5rem] p-8 flex flex-col justify-between min-h-[220px]"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
+                  <CheckIcon />
+                </div>
+                <h3 className="text-lg font-semibold text-white/95">Garantia de código</h3>
+              </div>
+              <p className="text-sm text-white/80 mt-6 leading-relaxed font-light">
+                Código proprietário limpo, rápido e sem templates prontos. Sem lock-in tecnológico para sua empresa escalar com total liberdade.
+              </p>
+            </motion.div>
 
           </div>
 
