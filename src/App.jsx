@@ -26,32 +26,32 @@ const BRAND_LOGOS = [
 const METHOD_PHASES = [
   {
     letter: "C",
-    title: "Conceito",
-    desc: "Discovery e estratégia. Entendo o negócio antes de desenhar qualquer tela.",
+    title: "Compreensão",
+    desc: "Diagnóstico profundo do seu modelo de negócio e público-alvo.",
     bgImage: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1200&q=80"
   },
   {
     letter: "R",
-    title: "Roteiro",
-    desc: "Arquitetura e copy. Defino o que a página diz e em que ordem.",
+    title: "Refinamento",
+    desc: "Design UI/UX autoral, exclusivo e desenhado do zero no Figma.",
     bgImage: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80"
   },
   {
     letter: "A",
     title: "Arquitetura",
-    desc: "Wireframe aprovado. Você aprova tudo antes do início do desenvolvimento.",
+    desc: "Estrutura planejada para guiar o usuário até o contato comercial.",
     bgImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
   },
   {
     letter: "F",
-    title: "Forma",
-    desc: "UI em alta fidelidade. Ajustamos a interface até a aprovação final.",
+    title: "Fluidez",
+    desc: "Código limpo, mobile-first e carregamento abaixo de 2 segundos.",
     bgImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80"
   },
   {
     letter: "T",
-    title: "Tecnologia",
-    desc: "Desenvolvimento e go-live. Investimento dividido pelas entregas realizadas.",
+    title: "Transformação",
+    desc: "Integrações perfeitas e tags de rastreamento ativadas para tráfego.",
     bgImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80"
   }
 ];
@@ -370,14 +370,13 @@ export default function AppV4() {
     }
   }, [isLoading]);
 
-  // Form Multi-Step State
-  const [formStep, setFormStep] = useState(1);
+  // Form State
   const [formData, setFormData] = useState({
-    projectType: '',
-    urgency: '',
-    budgetRange: '',
     name: '',
-    whatsapp: ''
+    email: '',
+    whatsapp: '',
+    segment: '',
+    goal: ''
   });
 
   const handleScrollToForm = () => {
@@ -390,17 +389,23 @@ export default function AppV4() {
 
   // WhatsApp Redirect Logic
   const handleSendWhatsApp = () => {
-    const { projectType, urgency, budgetRange, name, whatsapp } = formData;
+    const { name, email, whatsapp, segment, goal } = formData;
     
-    if (!name || !whatsapp) {
-      alert("Por favor, preencha seu nome e WhatsApp.");
+    if (!name || !email || !whatsapp || !segment || !goal) {
+      alert("Por favor, preencha todos os campos do formulário de aplicação.");
       return;
     }
 
-    const message = `Olá, Sérgio! Acabei de preencher o formulário no seu site. Resumo: projeto de ${projectType}, urgência ${urgency}, faixa de investimento ${budgetRange}. Meu nome é ${name}. Aguardo seu retorno.`;
+    const message = `Olá, Sérgio! Acabei de aplicar para uma Sessão Estratégica no seu site.
+
+Dados da Aplicação:
+- Nome: ${name}
+- E-mail Corporativo: ${email}
+- WhatsApp: ${whatsapp}
+- Segmento: ${segment}
+- Meta com o site: ${goal}`;
     
-    // TODO: WhatsApp - Substituir XXXXXXXXXXX pelo número oficial em produção
-    const waUrl = `https://wa.me/55XXXXXXXXXXX?text=${encodeURIComponent(message)}`;
+    const waUrl = `https://wa.me/5521993755022?text=${encodeURIComponent(message)}`;
     window.open(waUrl, '_blank');
   };
 
@@ -438,10 +443,9 @@ export default function AppV4() {
           {/* Center Links (Hidden on mobile) */}
           <div className="hidden md:flex items-center gap-1.5 liquid-glass rounded-full px-2 py-1.5">
             {[
+              { label: "Portfólio", id: "projetos" },
               { label: "Método", id: "metodo" },
-              { label: "Garantias", id: "garantias" },
-              { label: "Projetos", id: "projetos" },
-              { label: "Sobre", id: "sobre" },
+              { label: "Diferenciais", id: "diferenciais" },
               { label: "FAQ", id: "faq" }
             ].map((link) => (
               <button 
@@ -458,7 +462,7 @@ export default function AppV4() {
               onClick={handleScrollToForm}
               className="bg-white text-black text-xs font-semibold uppercase tracking-wider rounded-full px-4 py-2 flex items-center gap-1 ml-2 transition-transform hover:scale-105"
             >
-              Solicitar diagnóstico
+              Aplicar para Projeto
               <ArrowUpRight />
             </button>
           </div>
@@ -486,7 +490,7 @@ export default function AppV4() {
             
             {/* Left Column: Text & CTAs */}
             <div className="flex flex-col items-start text-left max-w-2xl justify-center">
-              {/* Booking Badge */}
+              {/* Booking Badge (Super-headline) */}
               <motion.div
                 {...motionProps}
                 transition={{ ...motionProps.transition, delay: 4.6 }}
@@ -496,30 +500,30 @@ export default function AppV4() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
                 </span>
-                <span>Agenda aberta para o 3º trimestre. Vagas limitadas.</span>
+                <span>DESIGN AUTORAL & ALTA PERFORMANCE</span>
               </motion.div>
 
               {/* Headline */}
               <div className="flex flex-col items-start select-text mb-6">
                 <BlurText 
-                  text="Seu site não é um custo."
+                  text="Sua marca é líder de mercado."
                   delay={4.2}
                   className="text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-[-0.04em] leading-[0.95] text-white text-left justify-start"
                 />
                 <BlurText 
-                  text="É o seu melhor vendedor."
+                  text="Seu site também deveria ser."
                   delay={4.5}
                   className="text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-[-0.04em] leading-[0.95] text-white mt-2 text-left justify-start"
                 />
               </div>
 
-              {/* Subtext */}
+              {/* Subheadline */}
               <motion.p
                 {...motionProps}
                 transition={{ ...motionProps.transition, delay: 5.0 }}
                 className="text-base md:text-lg text-white/85 max-w-xl leading-snug font-light"
               >
-                Sites sob medida para empresas que querem subir de nível. Estratégia, design e código. Um processo só. Um responsável só.
+                Interfaces exclusivas de alto padrão para empresas que se recusam a parecer comuns. Design premium alinhado à máxima performance web.
               </motion.p>
 
               {/* CTA Buttons */}
@@ -532,7 +536,7 @@ export default function AppV4() {
                   onClick={handleScrollToForm}
                   className="liquid-glass-strong rounded-full px-7 py-3.5 flex items-center gap-2 hover:scale-105 transition-transform text-sm font-semibold tracking-wide"
                 >
-                  Solicitar diagnóstico gratuito <ArrowUpRight />
+                  Agendar Sessão Estratégica <ArrowUpRight />
                 </button>
               </motion.div>
 
@@ -636,7 +640,7 @@ export default function AppV4() {
               transition={{ duration: 0.6 }}
               className="text-sm text-white/60 font-mono block mb-4"
             >
-              // O problema
+              // A sabotagem silenciosa
             </motion.span>
 
             <motion.h2 
@@ -646,7 +650,7 @@ export default function AppV4() {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-[1.0] text-white"
             >
-              A maioria dos sites trava antes de vender.
+              O design invisível afasta seus clientes de maior valor.
             </motion.h2>
 
             {/* Problem Text Content (Solto, sem container) */}
@@ -658,30 +662,11 @@ export default function AppV4() {
               className="mt-8 flex flex-col gap-6"
             >
               <p className="text-lg text-white/80 font-light leading-relaxed">
-                Template genérico. Texto que ninguém lê. Visual que não passa confiança. O resultado aparece no caixa: visitas que não viram conversa, e conversas que não viram contrato.
+                Um site lento, genérico ou com falhas de usabilidade transmite uma premissa perigosa: a de que o seu serviço também é medíocre.
               </p>
               <p className="text-lg text-white/95 font-medium leading-relaxed">
-                Um site bom não é o mais bonito. É o que conduz a decisão certa.
+                Não se trata apenas de "ter um site". Trata-se de construir uma estrutura digital à altura do preço que você cobra.
               </p>
-            </motion.div>
-
-            {/* Dores Chips Row */}
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-3 mt-8"
-            >
-              {["Genérico demais", "Sem estratégia", "Sem resultado"].map((chip) => (
-                <span key={chip} className="liquid-glass rounded-full px-4 py-2 text-sm text-white/85 font-sans flex items-center gap-2">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white w-3 h-3 flex-shrink-0">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                  </svg>
-                  <span>{chip}</span>
-                </span>
-              ))}
             </motion.div>
           </div>
 
@@ -726,7 +711,7 @@ export default function AppV4() {
           <div className="mb-16">
             <span className="text-sm text-white/60 font-mono block mb-4">// O método</span>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-[-0.03em] leading-[0.95] text-white">
-              Método CRAFT.<br />Cinco fases. Zero achismo.
+              Método CRAFT. 5 fases. Sem achismos.
             </h2>
             <p className="text-lg text-white/85 max-w-2xl mt-6 leading-relaxed font-light">
               Um processo autoral, do conceito ao lançamento. Cada fase tem entrega clara e ponto de aprovação.
@@ -780,98 +765,85 @@ export default function AppV4() {
         </div>
       </section>
 
-      {/* SECTION 4 — GARANTIAS */}
-      <section id="garantias" className="relative w-full min-h-screen bg-black flex flex-col justify-center py-24 px-6 md:px-16">
-        <div className="max-w-[1200px] mx-auto">
+      {/* DOBRA 4 — PROVA SOCIAL & DEPOIMENTOS */}
+      <section className="relative w-full min-h-screen bg-black flex flex-col justify-center py-24 px-6 md:px-16 border-t border-white/5">
+        <div className="max-w-[1200px] mx-auto w-full">
           
           {/* Header */}
           <div className="mb-16">
-            <span className="text-sm text-white/60 font-mono block mb-4">// Segurança</span>
+            <span className="text-sm text-white/60 font-mono block mb-4">// Prova social</span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-tight text-white">
-              Risco do seu lado, zero.
+              Quem decidiu subir de nível.
             </h2>
           </div>
 
-          {/* Bento Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+          {/* Depoimentos Bento Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            {/* Card 1: Garantia de escopo (Grande - 2 colunas) */}
+            {/* Card 1 */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="liquid-glass rounded-[1.5rem] p-8 flex flex-col justify-between md:col-span-2 min-h-[220px]"
+              className="liquid-glass rounded-[1.5rem] p-8 flex flex-col justify-between min-h-[260px]"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
-                  <CheckIcon />
-                </div>
-                <h3 className="text-lg font-semibold text-white/95">Garantia de escopo</h3>
-              </div>
-              <p className="text-sm text-white/80 mt-6 leading-relaxed font-light">
-                O desenvolvimento de código só começa após a aprovação formal do wireframe e da estrutura. Você sabe exatamente o que vai receber antes do início de qualquer linha de programação, garantindo 100% de clareza nas entregas.
+              <p className="text-base text-white/90 italic font-light leading-relaxed">
+                "O novo site mudou o jogo de nosso posicionamento. No primeiro mês, a conversão de contratos de ticket alto cresceu de forma expressiva."
               </p>
+              <div className="mt-8 pt-4 border-t border-white/5 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-sm text-white font-mono">
+                  RM
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-white/95">Roberta Mendes</h4>
+                  <span className="text-[11px] text-white/60 font-mono">Diretora na Lifestyle Tech</span>
+                </div>
+              </div>
             </motion.div>
 
-            {/* Card 2: Garantia de design (Alto - 1 coluna, 2 linhas) */}
+            {/* Card 2 */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="liquid-glass rounded-[1.5rem] p-8 flex flex-col justify-between md:col-span-1 md:row-span-2 min-h-[280px] md:min-h-full"
+              className="liquid-glass rounded-[1.5rem] p-8 flex flex-col justify-between min-h-[260px]"
             >
-              <div className="flex flex-col gap-4">
-                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
-                  <CheckIcon />
-                </div>
-                <h3 className="text-lg font-semibold text-white/95">Garantia de design</h3>
-                <p className="text-sm text-white/80 leading-relaxed font-light">
-                  Revisões ilimitadas na interface de alta fidelidade até a aprovação final. Sem prazos forçados ou retrabalho que vira refém. Ajustamos os pixels, as fontes e os layouts até que o visual corresponda exatamente à imagem de excelência da sua marca.
-                </p>
-              </div>
-              <div className="mt-8 pt-4 border-t border-white/5 font-mono text-[10px] text-white/40 tracking-wider">
-                // 100% PIXEL PERFECT
-              </div>
-            </motion.div>
-
-            {/* Card 3: Garantia de fluxo (1 coluna) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="liquid-glass rounded-[1.5rem] p-8 flex flex-col justify-between min-h-[220px]"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
-                  <CheckIcon />
-                </div>
-                <h3 className="text-lg font-semibold text-white/95">Garantia de fluxo</h3>
-              </div>
-              <p className="text-sm text-white/80 mt-6 leading-relaxed font-light">
-                Pagamento dividido por marcos, alinhado a cada entrega física do Método CRAFT. Você financia o progresso real.
+              <p className="text-base text-white/90 italic font-light leading-relaxed">
+                "Superou nossas expectativas estéticas e técnicas. Um nível de profissionalismo raro de encontrar no mercado."
               </p>
+              <div className="mt-8 pt-4 border-t border-white/5 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-sm text-white font-mono">
+                  TV
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-white/95">Thiago Vasconcellos</h4>
+                  <span className="text-[11px] text-white/60 font-mono">Fundador da Prime Travel</span>
+                </div>
+              </div>
             </motion.div>
 
-            {/* Card 4: Garantia de código (1 coluna) */}
+            {/* Card 3 */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="liquid-glass rounded-[1.5rem] p-8 flex flex-col justify-between min-h-[220px]"
+              className="liquid-glass rounded-[1.5rem] p-8 flex flex-col justify-between min-h-[260px]"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
-                  <CheckIcon />
-                </div>
-                <h3 className="text-lg font-semibold text-white/95">Garantia de código</h3>
-              </div>
-              <p className="text-sm text-white/80 mt-6 leading-relaxed font-light">
-                Código proprietário limpo, rápido e sem templates prontos. Sem lock-in tecnológico para sua empresa escalar com total liberdade.
+              <p className="text-base text-white/90 italic font-light leading-relaxed">
+                "A velocidade e sofisticação visual geraram valor imediato para a nossa marca. O processo foi impecável."
               </p>
+              <div className="mt-8 pt-4 border-t border-white/5 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-sm text-white font-mono">
+                  MV
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-white/95">Marcus Viana</h4>
+                  <span className="text-[11px] text-white/60 font-mono">CMO da Viana Investimentos</span>
+                </div>
+              </div>
             </motion.div>
 
           </div>
@@ -879,16 +851,19 @@ export default function AppV4() {
         </div>
       </section>
 
-      {/* SECTION 5 — PROJETOS */}
-      <section id="projetos" className="relative w-full min-h-screen bg-black py-32 px-6 md:px-16">
+      {/* SECTION 5 — PROJETOS / PORTFÓLIO */}
+      <section id="projetos" className="relative w-full min-h-screen bg-black py-32 px-6 md:px-16 border-t border-white/5">
         <div className="max-w-[1200px] mx-auto">
           
           {/* Header */}
           <div className="mb-16">
-            <span className="text-sm text-white/60 font-mono block mb-4">// Projetos</span>
+            <span className="text-sm text-white/60 font-mono block mb-4">// Portfólio</span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-tight text-white">
-              Trabalho que sustenta o resultado.
+              Projetos selecionados.
             </h2>
+            <p className="text-lg text-white/85 max-w-2xl mt-6 leading-relaxed font-light">
+              Interfaces sob medida criadas para marcas que lideram seus nichos.
+            </p>
           </div>
 
           {/* Project Grid */}
@@ -934,6 +909,125 @@ export default function AppV4() {
         </div>
       </section>
 
+      {/* DOBRA 6 — O ESCOPO PREMIUM */}
+      <section id="diferenciais" className="relative w-full min-h-screen bg-black flex flex-col justify-center py-32 px-6 md:px-16 border-t border-white/5">
+        <div className="max-w-[1000px] mx-auto w-full">
+          
+          {/* Header */}
+          <div className="mb-20">
+            <span className="text-sm text-white/60 font-mono block mb-4">// Diferenciais</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-tight text-white">
+              O padrão de entrega:
+            </h2>
+          </div>
+
+          {/* Lista de Diferenciais com Linhas Horizontais */}
+          <div className="flex flex-col border-t border-white/10">
+            {[
+              {
+                title: "Design 100% Exclusivo",
+                desc: "Zero templates. UI/UX pensada exclusivamente para seu posicionamento.",
+                num: "01"
+              },
+              {
+                title: "Performance Extrema",
+                desc: "Otimização técnica para carregamento em até 2 segundos no mobile.",
+                num: "02"
+              },
+              {
+                title: "Rastreamento Blindado",
+                desc: "Configuração avançada de tags, pixels e UTMs para o seu tráfego.",
+                num: "03"
+              },
+              {
+                title: "Segurança Avançada",
+                desc: "Instalação de protocolos de segurança SSL e otimização contra ataques.",
+                num: "04"
+              },
+              {
+                title: "Treinamento e Autonomia",
+                desc: "Tutoriais gravados em vídeo para sua equipe atualizar o site com facilidade.",
+                num: "05"
+              }
+            ].map((item, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className="grid grid-cols-1 md:grid-cols-[60px_1.5fr_2fr] gap-4 py-8 border-b border-white/10 items-start hover:bg-white/[0.02] transition-colors px-4 rounded-lg group"
+              >
+                <span className="font-mono text-xs text-white/40 group-hover:text-white transition-colors duration-300">
+                  {item.num}
+                </span>
+                <h3 className="text-lg md:text-xl font-semibold text-white/95 group-hover:translate-x-1 transition-transform duration-300">
+                  {item.title}
+                </h3>
+                <p className="text-sm md:text-base text-white/70 font-light leading-relaxed">
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* DOBRA 7 — GARANTIA */}
+      <section id="garantias" className="relative w-full min-h-screen bg-black flex flex-col justify-center py-24 px-6 md:px-16 border-t border-white/5">
+        <div className="max-w-[1200px] mx-auto w-full">
+          
+          {/* Header */}
+          <div className="mb-16">
+            <span className="text-sm text-white/60 font-mono block mb-4">// Garantia</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-tight text-white">
+              Risco zero para você.
+            </h2>
+          </div>
+
+          {/* Dois blocos lado a lado */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            {/* Bloco 1: Design */}
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="liquid-glass rounded-[2rem] p-8 md:p-10 flex flex-col justify-between min-h-[260px] border border-white/10"
+            >
+              <div>
+                <span className="text-xs text-white/50 font-mono uppercase tracking-wider block mb-4">// DESIGN</span>
+                <h3 className="text-2xl font-semibold text-white/95">Alinhamento Total</h3>
+                <p className="text-base text-white/80 mt-6 leading-relaxed font-light">
+                  O desenvolvimento só começa após sua aprovação de 100% no Figma. Redesenhamos até ficar impecável.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Bloco 2: Suporte */}
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="liquid-glass rounded-[2rem] p-8 md:p-10 flex flex-col justify-between min-h-[260px] border border-white/10"
+            >
+              <div>
+                <span className="text-xs text-white/50 font-mono uppercase tracking-wider block mb-4">// SUPORTE</span>
+                <h3 className="text-2xl font-semibold text-white/95">Suporte Técnico</h3>
+                <p className="text-base text-white/80 mt-6 leading-relaxed font-light">
+                  30 dias de acompanhamento completo pós-lançamento para garantir estabilidade absoluta.
+                </p>
+              </div>
+            </motion.div>
+
+          </div>
+
+        </div>
+      </section>
+
       {/* SECTION 6 — SOBRE / BIO */}
       <section id="sobre" className="relative w-full min-h-screen bg-black flex items-center py-24 px-6 md:px-16">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-12 items-center">
@@ -949,16 +1043,16 @@ export default function AppV4() {
 
           {/* Right Column: Bio text */}
           <div className="flex flex-col items-start justify-center">
-            <span className="text-sm text-white/60 font-mono block mb-4">// Quem faz</span>
+            <span className="text-sm text-white/60 font-mono block mb-4">// Sobre</span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-tight text-white mb-6">
-              Sérgio Colpaert.
+              Quem está por trás do projeto?
             </h2>
             <div className="text-lg text-white/80 font-light leading-relaxed flex flex-col gap-6">
               <p>
-                Sou <strong className="text-white font-medium">Product Designer</strong> — desenho produtos digitais ponta a ponta, da estratégia ao código. Mais de 6 anos transformando ideias em interfaces que funcionam.
+                Olá, sou Sérgio Colpaert. Atuo na intersecção entre o design estético sofisticado e a tecnologia de performance web.
               </p>
               <p>
-                Trabalho sozinho com você, sem intermediário. Quem desenha é quem entende do seu negócio. Quem entende é quem entrega.
+                Minha missão é eliminar sua complexidade técnica e entregar uma estrutura digital refinada que gere resultados reais e valor de marca para a sua empresa.
               </p>
             </div>
           </div>
@@ -967,210 +1061,99 @@ export default function AppV4() {
       </section>
 
       {/* SECTION 7 — FORMULÁRIO DE CONVERSÃO */}
+      {/* SECTION 7 — FORMULÁRIO DE CONVERSÃO */}
       <section id="form" className="relative w-full min-h-screen bg-black flex items-center py-32 px-6 md:px-16 border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto w-full grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-12 items-center">
+        <div className="max-w-[680px] mx-auto w-full flex flex-col items-center">
           
-          {/* Left Info Column */}
-          <div className="flex flex-col items-start">
-            <span className="text-sm text-white/60 font-mono block mb-4">// Vamos conversar</span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-tight text-white mb-4">
-              Solicite seu diagnóstico gratuito.
+          {/* Header */}
+          <div className="text-center mb-12">
+            <span className="text-sm text-white/60 font-mono block mb-4">// Aplicação</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.03em] leading-tight text-white">
+              Aplique para uma Sessão Estratégica.
             </h2>
-            <p className="text-lg text-white/80 font-light">
-              Poucas perguntas. Resposta em poucos minutos.
+            <p className="text-sm md:text-base text-white/70 max-w-lg mx-auto mt-4 font-light">
+              Vagas limitadas para garantir atenção cirúrgica e exclusiva. Preencha os dados e retornaremos em até 24 horas.
             </p>
           </div>
 
-          {/* Right Form Card */}
-          <div className="w-full flex justify-center md:justify-end">
-            <div className="liquid-glass-strong rounded-[1.5rem] p-8 w-full max-w-lg relative border border-white/10 shadow-2xl flex flex-col min-h-[460px]">
-              
-              {/* Form Step Indicator */}
-              <div className="flex justify-between items-center mb-8">
-                <span className="text-xs font-mono uppercase tracking-widest text-[#89AACC]">Passo {formStep} de 4</span>
-                <div className="flex gap-1.5">
-                  {[1, 2, 3, 4].map((step) => (
-                    <div 
-                      key={step}
-                      className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${
-                        formStep >= step ? 'bg-white scale-110' : 'bg-white/20'
-                      }`}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Form Step Content */}
-              <div className="flex-1 flex flex-col justify-center">
-                <AnimatePresence mode="wait">
-                  {formStep === 1 && (
-                    <motion.div
-                      key="step1"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.2 }}
-                      className="flex flex-col gap-4"
-                    >
-                      <h3 className="text-lg font-medium text-white/95 mb-2">Qual o tipo do seu projeto?</h3>
-                      {[
-                        "Site institucional",
-                        "Landing page",
-                        "E-commerce",
-                        "Web app"
-                      ].map((option) => (
-                        <button
-                          key={option}
-                          onClick={() => setFormData({ ...formData, projectType: option })}
-                          className={`w-full text-left p-4 rounded-xl border text-sm transition-all ${
-                            formData.projectType === option 
-                              ? 'border-white bg-white/5 text-white' 
-                              : 'border-white/10 bg-white/[0.01] text-white/70 hover:border-white/30'
-                          }`}
-                        >
-                          {option}
-                        </button>
-                      ))}
-                    </motion.div>
-                  )}
-
-                  {formStep === 2 && (
-                    <motion.div
-                      key="step2"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.2 }}
-                      className="flex flex-col gap-4"
-                    >
-                      <h3 className="text-lg font-medium text-white/95 mb-2">Qual a urgência de entrega?</h3>
-                      {[
-                        "O quanto antes",
-                        "Nas próximas semanas",
-                        "Ainda planejando"
-                      ].map((option) => (
-                        <button
-                          key={option}
-                          onClick={() => setFormData({ ...formData, urgency: option })}
-                          className={`w-full text-left p-4 rounded-xl border text-sm transition-all ${
-                            formData.urgency === option 
-                              ? 'border-white bg-white/5 text-white' 
-                              : 'border-white/10 bg-white/[0.01] text-white/70 hover:border-white/30'
-                          }`}
-                        >
-                          {option}
-                        </button>
-                      ))}
-                    </motion.div>
-                  )}
-
-                  {formStep === 3 && (
-                    <motion.div
-                      key="step3"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.2 }}
-                      className="flex flex-col gap-4"
-                    >
-                      <h3 className="text-lg font-medium text-white/95 mb-2">Faixa de investimento estimada:</h3>
-                      {[
-                        "R$ 5–10k",
-                        "R$ 10–20k",
-                        "R$ 20–40k",
-                        "Acima de R$ 40k"
-                      ].map((option) => (
-                        <button
-                          key={option}
-                          onClick={() => setFormData({ ...formData, budgetRange: option })}
-                          className={`w-full text-left p-4 rounded-xl border text-sm transition-all ${
-                            formData.budgetRange === option 
-                              ? 'border-white bg-white/5 text-white' 
-                              : 'border-white/10 bg-white/[0.01] text-white/70 hover:border-white/30'
-                          }`}
-                        >
-                          {option}
-                        </button>
-                      ))}
-                    </motion.div>
-                  )}
-
-                  {formStep === 4 && (
-                    <motion.div
-                      key="step4"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.2 }}
-                      className="flex flex-col gap-4"
-                    >
-                      <h3 className="text-lg font-medium text-white/95 mb-2">Dados de contato:</h3>
-                      <div className="flex flex-col gap-1">
-                        <label className="text-xs text-white/60 font-mono">NOME COMPLETO</label>
-                        <input
-                          type="text"
-                          placeholder="Ex: João Silva"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full bg-white/[0.02] border border-white/10 focus:border-white/50 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all"
-                        />
-                      </div>
-                      
-                      <div className="flex flex-col gap-1 mt-2">
-                        <label className="text-xs text-white/60 font-mono">WHATSAPP</label>
-                        <input
-                          type="tel"
-                          placeholder="Ex: (11) 99999-9999"
-                          value={formData.whatsapp}
-                          onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
-                          className="w-full bg-white/[0.02] border border-white/10 focus:border-white/50 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all"
-                        />
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* Form Navigation Buttons */}
-              <div className="flex justify-between items-center gap-4 mt-8 pt-4 border-t border-white/5">
-                {formStep > 1 && (
-                  <button 
-                    onClick={() => setFormStep(formStep - 1)}
-                    className="text-xs font-mono uppercase tracking-wider text-white/60 hover:text-white transition-colors py-2 px-3 rounded"
-                  >
-                    Voltar
-                  </button>
-                )}
-                
-                {formStep < 4 ? (
-                  <button 
-                    disabled={
-                      (formStep === 1 && !formData.projectType) || 
-                      (formStep === 2 && !formData.urgency) || 
-                      (formStep === 3 && !formData.budgetRange)
-                    }
-                    onClick={() => setFormStep(formStep + 1)}
-                    className="ml-auto bg-white text-black text-xs font-semibold uppercase tracking-wider rounded-full px-5 py-3 hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 transition-all"
-                  >
-                    Continuar
-                  </button>
-                ) : (
-                  <button 
-                    onClick={handleSendWhatsApp}
-                    className="ml-auto bg-[#25D366] text-white text-xs font-semibold uppercase tracking-wider rounded-full px-6 py-3 flex items-center gap-1.5 hover:scale-105 transition-all shadow-lg"
-                  >
-                    Enviar para o WhatsApp
-                  </button>
-                )}
-              </div>
-
-              {formStep === 4 && (
-                <span className="text-[10px] text-white/40 text-center mt-3 block font-mono">
-                  Resposta em poucos minutos. Sem compromisso.
-                </span>
-              )}
-
+          {/* Form Card (Bordas imperceptíveis, inputs de linha inferior sutil) */}
+          <div className="w-full flex flex-col gap-8">
+            
+            {/* Campo 1: Nome */}
+            <div className="flex flex-col gap-1 w-full text-left">
+              <label className="text-[10px] text-white/50 font-mono uppercase tracking-widest">Nome Completo</label>
+              <input
+                type="text"
+                placeholder="Ex: João Silva"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full bg-transparent border-b border-white/10 focus:border-white py-3 text-base text-white focus:outline-none transition-all placeholder:text-white/20 font-sans"
+              />
             </div>
+
+            {/* Campo 2: E-mail Corporativo */}
+            <div className="flex flex-col gap-1 w-full text-left">
+              <label className="text-[10px] text-white/50 font-mono uppercase tracking-widest">E-mail Corporativo</label>
+              <input
+                type="email"
+                placeholder="Ex: joao@suaempresa.com.br"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full bg-transparent border-b border-white/10 focus:border-white py-3 text-base text-white focus:outline-none transition-all placeholder:text-white/20 font-sans"
+              />
+            </div>
+
+            {/* Campo 3: WhatsApp */}
+            <div className="flex flex-col gap-1 w-full text-left">
+              <label className="text-[10px] text-white/50 font-mono uppercase tracking-widest">WhatsApp</label>
+              <input
+                type="tel"
+                placeholder="Ex: (11) 99999-9999"
+                value={formData.whatsapp}
+                onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
+                className="w-full bg-transparent border-b border-white/10 focus:border-white py-3 text-base text-white focus:outline-none transition-all placeholder:text-white/20 font-sans"
+              />
+            </div>
+
+            {/* Campo 4: Segmento */}
+            <div className="flex flex-col gap-1 w-full text-left">
+              <label className="text-[10px] text-white/50 font-mono uppercase tracking-widest">Segmento de Atuação</label>
+              <input
+                type="text"
+                placeholder="Ex: Tecnologia, Finanças, Saúde..."
+                value={formData.segment}
+                onChange={(e) => setFormData({ ...formData, segment: e.target.value })}
+                className="w-full bg-transparent border-b border-white/10 focus:border-white py-3 text-base text-white focus:outline-none transition-all placeholder:text-white/20 font-sans"
+              />
+            </div>
+
+            {/* Campo 5: Qual sua meta com o novo site? */}
+            <div className="flex flex-col gap-1 w-full text-left">
+              <label className="text-[10px] text-white/50 font-mono uppercase tracking-widest">Qual sua meta com o novo site?</label>
+              <textarea
+                rows={2}
+                placeholder="Ex: Dobrar a taxa de conversão de leads, atrair clientes de maior ticket..."
+                value={formData.goal}
+                onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
+                className="w-full bg-transparent border-b border-white/10 focus:border-white py-3 text-base text-white focus:outline-none transition-all placeholder:text-white/20 font-sans resize-none"
+              />
+            </div>
+
+            {/* Submit Button */}
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mt-6 flex justify-center"
+            >
+              <button 
+                onClick={handleSendWhatsApp}
+                className="liquid-glass-strong rounded-full px-8 py-4 flex items-center gap-2 hover:scale-105 transition-transform text-sm font-semibold tracking-wide bg-white text-black"
+              >
+                Enviar Aplicação & Agendar Análise <ArrowUpRight />
+              </button>
+            </motion.div>
+
           </div>
 
         </div>
@@ -1184,7 +1167,7 @@ export default function AppV4() {
           <div className="mb-16">
             <span className="text-sm text-white/60 font-mono block mb-4">// Dúvidas</span>
             <h2 className="text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-white">
-              Antes de você perguntar.
+              Dúvidas comuns.
             </h2>
           </div>
 
@@ -1192,24 +1175,16 @@ export default function AppV4() {
           <div className="flex flex-col gap-4">
             {[
               {
-                q: "Quanto custa um projeto?",
-                a: "Projetos a partir de R$ 5.000. O valor final depende do escopo, definido no diagnóstico."
+                q: "Qual o prazo de entrega?",
+                a: "Entre 3 a 5 semanas, dependendo da complexidade do projeto."
               },
               {
-                q: "Quanto tempo leva?",
-                a: "Em média de 4 a 6 semanas, conforme a complexidade. O cronograma é fechado na fase de Conceito."
+                q: "Terei autonomia para editar o conteúdo?",
+                a: "Sim. Desenvolvemos estruturas modulares de fácil atualização e fornecemos vídeos explicativos."
               },
               {
-                q: "O que é \"Product Designer\"?",
-                a: "É quem desenha produtos digitais de ponta a ponta — pensando estratégia, experiência e código, não só o visual."
-              },
-              {
-                q: "Você desenvolve ou só desenha?",
-                a: "Os dois. Desenho e desenvolvo. Um processo só, um responsável só."
-              },
-              {
-                q: "E depois que o site fica pronto?",
-                a: "30 dias de acompanhamento incluídos, com plano de manutenção mensal opcional."
+                q: "Vocês fazem a hospedagem do site?",
+                a: "Não oferecemos hospedagem própria por segurança à sua propriedade digital, mas indicamos, configuramos e otimizamos os melhores servidores do mercado."
               }
             ].map((faq, idx) => (
               <AccordionItem
@@ -1225,16 +1200,16 @@ export default function AppV4() {
           {/* Final CTA Band */}
           <div className="liquid-glass-strong rounded-[1.5rem] p-10 text-center mt-20 border border-white/10 shadow-2xl flex flex-col items-center">
             <h3 className="text-2xl md:text-3xl font-semibold tracking-tight text-white mb-6">
-              Pronto para um site que vende?
+              Pronto para subir de nível?
             </h3>
             <button 
               onClick={handleScrollToForm}
               className="bg-white text-black text-xs font-semibold uppercase tracking-wider rounded-full px-6 py-3.5 flex items-center gap-1.5 hover:scale-105 transition-all shadow-lg"
             >
-              Solicitar diagnóstico gratuito <ArrowUpRight />
+              Agendar Sessão Estratégica <ArrowUpRight />
             </button>
             <span className="text-[10px] text-white/50 mt-4 block font-mono uppercase tracking-wider">
-              Resposta em poucos minutos. Sem compromisso.
+              Vagas limitadas para este trimestre.
             </span>
           </div>
 
