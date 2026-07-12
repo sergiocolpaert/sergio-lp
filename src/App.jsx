@@ -21,6 +21,42 @@ const BRAND_LOGOS = [
 ];
 
 // ==========================================
+// METHOD CRAFT PHASES DEFINITIONS
+// ==========================================
+const METHOD_PHASES = [
+  {
+    letter: "C",
+    title: "Conceito",
+    desc: "Discovery e estratégia. Entendo o negócio antes de desenhar qualquer tela.",
+    bgImage: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    letter: "R",
+    title: "Roteiro",
+    desc: "Arquitetura e copy. Defino o que a página diz e em que ordem.",
+    bgImage: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    letter: "A",
+    title: "Arquitetura",
+    desc: "Wireframe aprovado. Você aprova tudo antes do início do desenvolvimento.",
+    bgImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    letter: "F",
+    title: "Forma",
+    desc: "UI em alta fidelidade. Ajustamos a interface até a aprovação final.",
+    bgImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80"
+  },
+  {
+    letter: "T",
+    title: "Tecnologia",
+    desc: "Desenvolvimento e go-live. Investimento dividido pelas entregas realizadas.",
+    bgImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80"
+  }
+];
+
+// ==========================================
 // CUSTOM SVG ICONS (NO LIBRARIES)
 // ==========================================
 const ArrowUpRight = ({ className = "text-current" }) => (
@@ -323,6 +359,7 @@ export default function AppV4() {
   const [isLoading, setIsLoading] = useState(true);
   const [isHeroVideoShrunk, setIsHeroVideoShrunk] = useState(false);
   const [faqOpenIdx, setFaqOpenIdx] = useState(null);
+  const [activeMethodIndex, setActiveMethodIndex] = useState(null);
 
   useEffect(() => {
     if (!isLoading) {
@@ -668,6 +705,22 @@ export default function AppV4() {
         {/* Dark overlay for method section */}
         <div className="absolute inset-0 bg-black/55 z-[1]" />
 
+        {/* Dynamic Background Image on Hover */}
+        <AnimatePresence>
+          {activeMethodIndex !== null && (
+            <motion.img
+              key={activeMethodIndex}
+              src={METHOD_PHASES[activeMethodIndex].bgImage}
+              alt="Fase background"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.35 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="absolute inset-0 w-full h-full object-cover z-[2]"
+            />
+          )}
+        </AnimatePresence>
+
         <div className="relative z-10 max-w-[1200px] mx-auto flex flex-col h-full justify-between">
           
           {/* Header */}
@@ -683,62 +736,41 @@ export default function AppV4() {
 
           {/* Grid of 5 Cards */}
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-            
-            {/* Card C */}
-            <div className="liquid-glass rounded-[1.25rem] p-5 min-h-[260px] flex flex-col justify-between">
-              <span className="text-5xl font-semibold tracking-[-2px] text-white/30 block">C</span>
-              <div>
-                <h3 className="text-base font-semibold text-white/95 mt-4">Conceito</h3>
-                <p className="text-xs text-white/80 mt-2 font-light leading-relaxed">
-                  Discovery e estratégia. Entendo o negócio antes de desenhar qualquer tela.
-                </p>
-              </div>
-            </div>
-
-            {/* Card R */}
-            <div className="liquid-glass rounded-[1.25rem] p-5 min-h-[260px] flex flex-col justify-between">
-              <span className="text-5xl font-semibold tracking-[-2px] text-white/30 block">R</span>
-              <div>
-                <h3 className="text-base font-semibold text-white/95 mt-4">Roteiro</h3>
-                <p className="text-xs text-white/80 mt-2 font-light leading-relaxed">
-                  Arquitetura e copy. Defino o que a página diz e em que ordem.
-                </p>
-              </div>
-            </div>
-
-            {/* Card A */}
-            <div className="liquid-glass rounded-[1.25rem] p-5 min-h-[260px] flex flex-col justify-between">
-              <span className="text-5xl font-semibold tracking-[-2px] text-white/30 block">A</span>
-              <div>
-                <h3 className="text-base font-semibold text-white/95 mt-4">Arquitetura</h3>
-                <p className="text-xs text-white/80 mt-2 font-light leading-relaxed">
-                  Wireframe aprovado. Você aprova tudo antes do início do desenvolvimento.
-                </p>
-              </div>
-            </div>
-
-            {/* Card F */}
-            <div className="liquid-glass rounded-[1.25rem] p-5 min-h-[260px] flex flex-col justify-between">
-              <span className="text-5xl font-semibold tracking-[-2px] text-white/30 block">F</span>
-              <div>
-                <h3 className="text-base font-semibold text-white/95 mt-4">Forma</h3>
-                <p className="text-xs text-white/80 mt-2 font-light leading-relaxed">
-                  UI em alta fidelidade. Ajustamos a interface até a aprovação final.
-                </p>
-              </div>
-            </div>
-
-            {/* Card T */}
-            <div className="liquid-glass rounded-[1.25rem] p-5 min-h-[260px] flex flex-col justify-between">
-              <span className="text-5xl font-semibold tracking-[-2px] text-white/30 block">T</span>
-              <div>
-                <h3 className="text-base font-semibold text-white/95 mt-4">Tecnologia</h3>
-                <p className="text-xs text-white/80 mt-2 font-light leading-relaxed">
-                  Desenvolvimento e go-live. Investimento dividido pelas entregas realizadas.
-                </p>
-              </div>
-            </div>
-
+            {METHOD_PHASES.map((phase, idx) => {
+              const isActive = activeMethodIndex === idx;
+              const isAnyActive = activeMethodIndex !== null;
+              
+              return (
+                <div
+                  key={phase.letter}
+                  onMouseEnter={() => setActiveMethodIndex(idx)}
+                  onMouseLeave={() => setActiveMethodIndex(null)}
+                  className={`rounded-[1.25rem] p-5 min-h-[260px] flex flex-col justify-between transition-all duration-500 cursor-pointer border ${
+                    isActive 
+                      ? "bg-white text-black border-white scale-[1.03] shadow-2xl z-10" 
+                      : "liquid-glass border-white/10"
+                  } ${isAnyActive && !isActive ? "opacity-40 scale-[0.98]" : "opacity-100"}`}
+                >
+                  <span className={`text-5xl font-semibold tracking-[-2px] block transition-colors duration-500 ${
+                    isActive ? "text-black/20" : "text-white/30"
+                  }`}>
+                    {phase.letter}
+                  </span>
+                  <div>
+                    <h3 className={`text-base font-semibold mt-4 transition-colors duration-500 ${
+                      isActive ? "text-black" : "text-white/95"
+                    }`}>
+                      {phase.title}
+                    </h3>
+                    <p className={`text-xs mt-2 font-light leading-relaxed transition-colors duration-500 ${
+                      isActive ? "text-black/85" : "text-white/80"
+                    }`}>
+                      {phase.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           {/* Post-CRAFT Strip */}
