@@ -176,7 +176,7 @@ export function BlurText({ text, className, delay = 0 }) {
       variants={containerVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      className={`flex flex-wrap justify-center ${className}`}
+      className={`flex flex-wrap ${className.includes('justify-') ? '' : 'justify-center'} ${className}`}
       style={{ rowGap: '0.1em' }}
     >
       {words.map((word, idx) => (
@@ -321,7 +321,17 @@ function LoadingScreen({ onComplete }) {
 // ==========================================
 export default function AppV4() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isHeroVideoShrunk, setIsHeroVideoShrunk] = useState(false);
   const [faqOpenIdx, setFaqOpenIdx] = useState(null);
+
+  useEffect(() => {
+    if (!isLoading) {
+      const timer = setTimeout(() => {
+        setIsHeroVideoShrunk(true);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
 
   // Form Multi-Step State
   const [formStep, setFormStep] = useState(1);
@@ -442,7 +452,7 @@ export default function AppV4() {
               {/* Booking Badge */}
               <motion.div
                 {...motionProps}
-                transition={{ ...motionProps.transition, delay: 3.4 }}
+                transition={{ ...motionProps.transition, delay: 4.6 }}
                 className="liquid-glass rounded-full px-4 py-1.5 text-xs text-white/95 flex items-center gap-2 mb-6"
               >
                 <span className="relative flex h-2 w-2">
@@ -456,20 +466,20 @@ export default function AppV4() {
               <div className="flex flex-col items-start select-text mb-6">
                 <BlurText 
                   text="Seu site não é um custo."
-                  delay={3.0}
-                  className="text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-[-0.04em] leading-[0.95] text-white text-left"
+                  delay={4.2}
+                  className="text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-[-0.04em] leading-[0.95] text-white text-left justify-start"
                 />
                 <BlurText 
                   text="É o seu melhor vendedor."
-                  delay={3.3}
-                  className="text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-[-0.04em] leading-[0.95] text-white mt-2 text-left"
+                  delay={4.5}
+                  className="text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-[-0.04em] leading-[0.95] text-white mt-2 text-left justify-start"
                 />
               </div>
 
               {/* Subtext */}
               <motion.p
                 {...motionProps}
-                transition={{ ...motionProps.transition, delay: 3.8 }}
+                transition={{ ...motionProps.transition, delay: 5.0 }}
                 className="text-base md:text-lg text-white/85 max-w-xl leading-snug font-light"
               >
                 Sites sob medida para empresas que querem subir de nível. Estratégia, design e código. Um processo só. Um responsável só.
@@ -478,7 +488,7 @@ export default function AppV4() {
               {/* CTA Buttons */}
               <motion.div
                 {...motionProps}
-                transition={{ ...motionProps.transition, delay: 4.1 }}
+                transition={{ ...motionProps.transition, delay: 5.3 }}
                 className="flex flex-wrap items-center gap-4 mt-8"
               >
                 <button 
@@ -498,36 +508,47 @@ export default function AppV4() {
               {/* Microcopy */}
               <motion.span
                 {...motionProps}
-                transition={{ ...motionProps.transition, delay: 4.2 }}
+                transition={{ ...motionProps.transition, delay: 5.4 }}
                 className="text-[11px] text-white/60 mt-3 block font-mono uppercase tracking-wider"
               >
                 Resposta em poucos minutos. Sem compromisso.
               </motion.span>
             </div>
 
-            {/* Right Column: Fading Video Container */}
-            <motion.div
-              {...motionProps}
-              transition={{ ...motionProps.transition, delay: 3.6 }}
-              className="relative w-full aspect-video lg:aspect-[4/3] rounded-[2rem] overflow-hidden liquid-glass border border-white/10 shadow-2xl"
-            >
-              <FadingVideo
-                src={HERO_BG}
-                startTime={7}
-                className="absolute inset-0 w-full h-full object-cover z-0"
-                style={{ 
-                  WebkitMaskImage: 'radial-gradient(ellipse at center, black 60%, transparent 98%)',
-                  maskImage: 'radial-gradient(ellipse at center, black 60%, transparent 98%)'
+            {/* Right Column: Fading Video Container with zoom-out transitions */}
+            <div className="relative w-full aspect-video lg:aspect-[4/3] rounded-[2rem]">
+              <motion.div
+                layout
+                className={isHeroVideoShrunk 
+                  ? "absolute inset-0 w-full h-full rounded-[2rem] overflow-hidden liquid-glass border border-white/10 shadow-2xl z-0"
+                  : "fixed inset-0 w-screen h-screen rounded-none overflow-hidden z-40"
+                }
+                transition={{
+                  duration: 1.2,
+                  ease: [0.25, 1, 0.0, 1]
                 }}
-              />
-            </motion.div>
+              >
+                <FadingVideo
+                  src={HERO_BG}
+                  startTime={7}
+                  className="absolute inset-0 w-full h-full object-cover z-0"
+                  style={{ 
+                    WebkitMaskImage: isHeroVideoShrunk 
+                      ? 'radial-gradient(ellipse at center, black 60%, transparent 98%)' 
+                      : 'radial-gradient(ellipse at center, black 40%, transparent 95%)',
+                    maskImage: isHeroVideoShrunk 
+                      ? 'radial-gradient(ellipse at center, black 60%, transparent 98%)' 
+                      : 'radial-gradient(ellipse at center, black 40%, transparent 95%)'
+                  }}
+                />
+              </motion.div>
+            </div>
 
           </div>
 
-          {/* Bottom Trust Strip */}
           <motion.footer
             {...motionProps}
-            transition={{ ...motionProps.transition, delay: 4.4 }}
+            transition={{ ...motionProps.transition, delay: 5.6 }}
             className="flex flex-col items-center gap-4 w-full"
           >
             <div className="liquid-glass rounded-full px-4 py-1.5 text-xs text-white/80 font-sans tracking-wide">
