@@ -618,18 +618,18 @@ export default function AppV4() {
               A maioria dos sites trava antes de vender.
             </motion.h2>
 
-            {/* Problem Card Frame */}
+            {/* Problem Text Content (Solto, sem container) */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="liquid-glass rounded-[1.5rem] p-8 md:p-10 w-full mt-8"
+              className="mt-8 flex flex-col gap-6"
             >
               <p className="text-lg text-white/80 font-light leading-relaxed">
                 Template genérico. Texto que ninguém lê. Visual que não passa confiança. O resultado aparece no caixa: visitas que não viram conversa, e conversas que não viram contrato.
               </p>
-              <p className="text-lg text-white/95 font-medium mt-6 leading-relaxed">
+              <p className="text-lg text-white/95 font-medium leading-relaxed">
                 Um site bom não é o mais bonito. É o que conduz a decisão certa.
               </p>
             </motion.div>
