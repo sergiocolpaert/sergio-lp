@@ -422,98 +422,106 @@ export default function AppV4() {
       </nav>
 
       {/* SECTION 1 — HERO */}
-      <section className="relative w-full h-screen overflow-hidden bg-black flex flex-col justify-between">
+      <section className="relative w-full min-h-screen lg:h-screen overflow-hidden bg-black flex flex-col justify-between">
         
-        {/* Background Video (20% smaller, centered, rounded with CSS mask to fade edges) */}
-        <FadingVideo
-          src={HERO_BG}
-          startTime={7}
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 object-cover rounded-[2.5rem] z-0"
-          style={{ 
-            width: '80vw', 
-            height: '80vh',
-            WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 95%)',
-            maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 95%)'
-          }}
-        />
-        {/* Dark overlay for text legibility (slightly lighter as requested) */}
-        <div className="absolute inset-0 bg-black/35 z-[1] pointer-events-none" />
-        {/* Vignette effect to fade video edges into pure black */}
+        {/* Vignette effect for background context */}
         <div 
           className="absolute inset-0 z-[1] pointer-events-none" 
           style={{ 
-            background: 'radial-gradient(circle, rgba(0,0,0,0) 25%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,1) 85%)' 
+            background: 'radial-gradient(circle, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 90%)' 
           }} 
         />
 
         {/* Content Overlay */}
-        <div className="relative z-10 flex flex-col h-full justify-between items-center text-center px-4 pt-28 pb-10">
+        <div className="relative z-10 flex flex-col justify-between h-full min-h-screen px-6 md:px-16 lg:px-24 pt-28 pb-10">
           
-          <div className="my-auto max-w-4xl mx-auto flex flex-col items-center">
-            {/* Booking Badge */}
-            <motion.div
-              {...motionProps}
-              transition={{ ...motionProps.transition, delay: 3.4 }}
-              className="liquid-glass rounded-full px-4 py-1.5 text-xs text-white/95 flex items-center gap-2 mb-6"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-              </span>
-              <span>Agenda aberta para o 3º trimestre. Vagas limitadas.</span>
-            </motion.div>
+          <div className="my-auto w-full max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center">
+            
+            {/* Left Column: Text & CTAs */}
+            <div className="flex flex-col items-start text-left max-w-2xl">
+              {/* Booking Badge */}
+              <motion.div
+                {...motionProps}
+                transition={{ ...motionProps.transition, delay: 3.4 }}
+                className="liquid-glass rounded-full px-4 py-1.5 text-xs text-white/95 flex items-center gap-2 mb-6"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                </span>
+                <span>Agenda aberta para o 3º trimestre. Vagas limitadas.</span>
+              </motion.div>
 
-            {/* Headline (Divided into two lines for desktop impact) */}
-            <div className="flex flex-col items-center select-text">
-              <BlurText 
-                text="Seu site não é um custo."
-                delay={3.0}
-                className="text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-[-0.04em] leading-[0.95] text-white"
-              />
-              <BlurText 
-                text="É o seu melhor vendedor."
-                delay={3.3}
-                className="text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-[-0.04em] leading-[0.95] text-white mt-2"
-              />
+              {/* Headline */}
+              <div className="flex flex-col items-start select-text mb-6">
+                <BlurText 
+                  text="Seu site não é um custo."
+                  delay={3.0}
+                  className="text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-[-0.04em] leading-[0.95] text-white text-left"
+                />
+                <BlurText 
+                  text="É o seu melhor vendedor."
+                  delay={3.3}
+                  className="text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-[-0.04em] leading-[0.95] text-white mt-2 text-left"
+                />
+              </div>
+
+              {/* Subtext */}
+              <motion.p
+                {...motionProps}
+                transition={{ ...motionProps.transition, delay: 3.8 }}
+                className="text-base md:text-lg text-white/85 max-w-xl leading-snug font-light"
+              >
+                Sites sob medida para empresas que querem subir de nível. Estratégia, design e código. Um processo só. Um responsável só.
+              </motion.p>
+
+              {/* CTA Buttons */}
+              <motion.div
+                {...motionProps}
+                transition={{ ...motionProps.transition, delay: 4.1 }}
+                className="flex flex-wrap items-center gap-4 mt-8"
+              >
+                <button 
+                  onClick={handleScrollToForm}
+                  className="liquid-glass-strong rounded-full px-7 py-3.5 flex items-center gap-2 hover:scale-105 transition-transform text-sm font-semibold tracking-wide"
+                >
+                  Solicitar diagnóstico gratuito <ArrowUpRight />
+                </button>
+                <button 
+                  onClick={() => handleScrollToSection('metodo')}
+                  className="flex items-center gap-2 text-white/90 hover:text-white transition-colors text-sm font-medium px-4 py-2 group"
+                >
+                  Ver o método <ChevronDown />
+                </button>
+              </motion.div>
+
+              {/* Microcopy */}
+              <motion.span
+                {...motionProps}
+                transition={{ ...motionProps.transition, delay: 4.2 }}
+                className="text-[11px] text-white/60 mt-3 block font-mono uppercase tracking-wider"
+              >
+                Resposta em poucos minutos. Sem compromisso.
+              </motion.span>
             </div>
 
-            {/* Subtext */}
-            <motion.p
-              {...motionProps}
-              transition={{ ...motionProps.transition, delay: 3.8 }}
-              className="text-base md:text-lg text-white/85 max-w-2xl mt-5 leading-snug font-light"
-            >
-              Sites sob medida para empresas que querem subir de nível. Estratégia, design e código. Um processo só. Um responsável só.
-            </motion.p>
-
-            {/* CTA Buttons */}
+            {/* Right Column: Fading Video Container */}
             <motion.div
               {...motionProps}
-              transition={{ ...motionProps.transition, delay: 4.1 }}
-              className="flex flex-wrap justify-center items-center gap-4 mt-8"
+              transition={{ ...motionProps.transition, delay: 3.6 }}
+              className="relative w-full aspect-video lg:aspect-[4/3] rounded-[2rem] overflow-hidden liquid-glass border border-white/10 shadow-2xl"
             >
-              <button 
-                onClick={handleScrollToForm}
-                className="liquid-glass-strong rounded-full px-7 py-3.5 flex items-center gap-2 hover:scale-105 transition-transform text-sm font-semibold tracking-wide"
-              >
-                Solicitar diagnóstico gratuito <ArrowUpRight />
-              </button>
-              <button 
-                onClick={() => handleScrollToSection('metodo')}
-                className="flex items-center gap-2 text-white/90 hover:text-white transition-colors text-sm font-medium px-4 py-2 group"
-              >
-                Ver o método <ChevronDown />
-              </button>
+              <FadingVideo
+                src={HERO_BG}
+                startTime={7}
+                className="absolute inset-0 w-full h-full object-cover z-0"
+                style={{ 
+                  WebkitMaskImage: 'radial-gradient(ellipse at center, black 60%, transparent 98%)',
+                  maskImage: 'radial-gradient(ellipse at center, black 60%, transparent 98%)'
+                }}
+              />
             </motion.div>
 
-            {/* Microcopy */}
-            <motion.span
-              {...motionProps}
-              transition={{ ...motionProps.transition, delay: 4.2 }}
-              className="text-[11px] text-white/60 mt-3 block font-mono uppercase tracking-wider"
-            >
-              Resposta em poucos minutos. Sem compromisso.
-            </motion.span>
           </div>
 
           {/* Bottom Trust Strip */}
